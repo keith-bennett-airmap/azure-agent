@@ -1,0 +1,21 @@
+
+version: '3'
+
+services:
+  dockeragent:
+    image: dockeragent
+    build:
+      context: dockeragent
+      args:
+        TARGETARCH: 'linux-arm'
+    user: "1000:1000"
+    container_name: 'azure-agent'
+    environment:
+      # from .env
+      AZP_TOKEN: "${AZP_TOKEN}"
+      AZP_URL: "${AZP_URL}"
+    # volumes:
+    # networks:
+    deploy:
+      restart_policy:
+        condition: always
